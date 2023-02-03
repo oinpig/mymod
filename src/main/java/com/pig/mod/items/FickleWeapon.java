@@ -50,11 +50,12 @@ public class FickleWeapon extends Item implements Vanishable {
         pPlayer.getItemInHand(InteractionHand.MAIN_HAND).setTag(FirstUse);
         rand.putInt("testmod.fickleweapon_rand",0);
         EnergyUsed.putInt("testmod.fickleweapon.energyUsed",0);
-        FirstUse.putBoolean("testmod.fickleweapon.firstuse",true);
         //Initialize "ChangingProgress" in the first use
+        if (!pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().getBoolean("testmod.fickleweapon.firstuse")){
+            FirstUse.putBoolean("testmod.fickleweapon.firstuse",true);
+        }
         if (pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().getBoolean("testmod.fickleweapon.firstuse")){
             ChangingProgress.putInt("testmod.fickleweapon.changingProgress",0);
-            FirstUse.putBoolean("testmod.fickleweapon.firstuse",false);
         }
         //Dash when the item is a sword
         Dash(pPlayer);
