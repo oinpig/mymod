@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "testmod:deepslate_citrine_ore"
+  },
+  "result": "testmod:example_item",
+  "experience": 0.1,
+  "cookingtime": 100
+}

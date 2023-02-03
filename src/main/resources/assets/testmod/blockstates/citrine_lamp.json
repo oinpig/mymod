@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "open=false": {
+      "model": "testmod:block/citrine_lamp_off"
+    },
+    "open=true": {
+      "model": "testmod:block/citrine_lamp_on"
+    }
+  }
+}

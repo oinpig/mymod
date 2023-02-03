@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "testmod:citrine_block",
+    "testmod:citrine_ore",
+    "testmod:deepslate_citrine_ore",
+    "testmod:endstone_citrine_ore",
+    "testmod:netherrack_citrine_ore"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "111",
+    "111",
+    "111"
+  ],
+  "key": {
+    "1": {
+      "item": "testmod:example_item"
+    }
+  },
+  "result": {
+    "item": "testmod:citrine_block",
+    "count": 1
+  }
+}

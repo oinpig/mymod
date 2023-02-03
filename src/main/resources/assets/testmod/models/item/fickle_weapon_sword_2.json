@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "testmod:item/fickle_weapon_sword_2"
+  }
+}
