@@ -76,35 +76,35 @@
   "overrides": [
     {
       "predicate": {
-        "pullin": 1
+        "fickle_pulling": 1
       },
       "model": "testmod:item/fickle_weapon_bow_pulling_1"
     },
     {
       "predicate": {
-        "pullin": 1,
-        "pul": 0.25
+        "fickle_pulling": 1,
+        "fickle_pull": 0.25
       },
       "model": "testmod:item/fickle_weapon_bow_pulling_2"
     },
     {
       "predicate": {
-        "pullin": 1,
-        "pul": 0.5
+        "fickle_pulling": 1,
+        "fickle_pull": 0.5
       },
       "model": "testmod:item/fickle_weapon_bow_pulling_3"
     },
     {
       "predicate": {
-        "pullin": 1,
-        "pul": 0.75
+        "fickle_pulling": 1,
+        "fickle_pull": 0.75
       },
       "model": "testmod:item/fickle_weapon_bow_pulling_4"
     },
     {
       "predicate": {
-        "pullin": 1,
-        "pul": 1
+        "fickle_pulling": 1,
+        "fickle_pull": 1
       },
       "model": "testmod:item/fickle_weapon_bow_pulling_5"
     }

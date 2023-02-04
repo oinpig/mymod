@@ -48,7 +48,7 @@ public class FickleWeapon extends Item implements Vanishable {
             if (pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().getInt("testmod.fickleweapon_rand") == 2 &&
                     pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().getInt("testmod.fickleweapon.changingProgress") == 10) {
                 ItemStack itemstack = pPlayer.getItemInHand(InteractionHand.MAIN_HAND);
-                boolean flag = !pPlayer.getProjectile(itemstack).isEmpty();
+                boolean flag = true;
 
                 InteractionResultHolder<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onArrowNock(itemstack, pLevel, pPlayer, InteractionHand.MAIN_HAND, flag);
                 if (ret != null) return ret;
@@ -173,7 +173,7 @@ public class FickleWeapon extends Item implements Vanishable {
 
                     float f = getPowerForTime(i);
                     if (!((double) f < 0.1D)) {
-                        boolean flag1 = player.getAbilities().instabuild || (itemstack.getItem() instanceof ArrowItem && ((ArrowItem) itemstack.getItem()).isInfinite(itemstack, pStack, player));
+                        boolean flag1 = true;
                         if (!pLevel.isClientSide) {
                             ArrowItem arrowitem = (ArrowItem) (itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
                             AbstractArrow abstractarrow = arrowitem.createArrow(pLevel, itemstack, player);

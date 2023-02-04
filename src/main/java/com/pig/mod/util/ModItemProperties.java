@@ -49,5 +49,32 @@ public class ModItemProperties {
                 return 0f;
             }
         });
+        ItemProperties.register(item,new ResourceLocation("fickle_pull"),(pStack, pLevel, pEntity, pSeed) -> {
+            float f = 0f;
+            if (pStack.hasTag()){
+                if (pStack.getTag().getInt("testmod.fickleweapon_rand") == 2){
+                    if (pEntity == null) {
+                        f= 0.0F;
+                    } else {
+                        f= pEntity.getUseItem() != pStack ? 0.0F : (float) (pStack.getUseDuration() -
+                                pEntity.getUseItemRemainingTicks()) / 10.0F;
+                    }
+                }
+            }else {
+                f=0f;
+            }
+            return f;
+        });
+        ItemProperties.register(item,new ResourceLocation("fickle_pulling"),(pStack, pLevel, pEntity, pSeed) -> {
+            float f = 0f;
+            if (pStack.hasTag()){
+                if (pStack.getTag().getInt("testmod.fickleweapon_rand") == 2){
+                    f= pEntity != null && pEntity.isUsingItem() && pEntity.getUseItem() == pStack ? 1.0F : 0.0F;
+                }
+            }else {
+                f= 0f;
+            }
+            return f;
+        });
     }
 }
