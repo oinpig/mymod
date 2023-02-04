@@ -15,6 +15,8 @@
   "item.testmod.citrine_chestplate": "黄水晶胸甲",
   "item.testmod.citrine_legging": "黄水晶护腿",
   "item.testmod.citrine_boots": "黄水晶鞋",
+  "item.testmod.fickle_weapon": "多变武器",
+
   "block.testmod.citrine_block": "黄水晶块",
   "block.testmod.citrine_ore": "黄水晶矿",
   "block.testmod.deepslate_citrine_ore": "深层黄水晶矿",
@@ -33,6 +35,7 @@
   "block.testmod.pink_rose": "粉玫瑰",
   "block.testmod.potted_pink_rose": "盆装粉玫瑰",
   "block.testmod.citrine_lamp": "黄宝石灯",
+
   "item.testmod.diamond_dowsing_rod.no_valuables": "未在点击的位置发现钻石",
   "item.testmod.diamond_dowsing_rod.found_sth": "发现钻石，位于",
   "item.testmod.lava_dowsing_rod.no_valuables": "未在点击的位置发现岩浆",
@@ -41,5 +44,6 @@
   "item.output.test": "点亮了天空!",
   "item.citrine_armor_tooltip": "§6富含魔力的护甲，你或许可以试试穿上全套",
   "item.tooltip.supercoal.null": "§8沼气驱动的燃料，可以燃烧§g114514§8 ticks(约为95分钟)",
+
   "block.tooltip.SpeedBlock": "踩上时提供速度效果"
 }

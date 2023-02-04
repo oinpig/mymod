@@ -25,7 +25,7 @@ public class ModItemProperties {
                 return 0.0F;
             } else {
                 return livingEntity.getUseItem() != itemStack ? 0.0F : (float) (itemStack.getUseDuration() -
-                        livingEntity.getUseItemRemainingTicks()) / 20.0F;
+                        livingEntity.getUseItemRemainingTicks()) / 10.0F;
             }
         });
 
