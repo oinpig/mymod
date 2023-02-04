@@ -36,10 +36,18 @@ public class ModItemProperties {
 
     private static void makeFickleItem(Item item){
         ItemProperties.register(item,new ResourceLocation("changing"),(pStack, pLevel, pEntity, pSeed) -> {
-            return (float) pStack.getTag().getInt("testmod.fickleweapon.changingProgress") / 10f;
+            if (pStack.getTag() != null){
+                return (float) pStack.getTag().getInt("testmod.fickleweapon.changingProgress") / 10f;
+            }else {
+                return 0f;
+            }
         });
         ItemProperties.register(item,new ResourceLocation("rand"),(pStack, pLevel, pEntity, pSeed) -> {
-            return (float) pStack.getTag().getInt("testmod.fickleweapon_rand");
+            if (pStack.getTag() != null){
+                return (float) pStack.getTag().getInt("testmod.fickleweapon_rand");
+            }else {
+                return 0f;
+            }
         });
     }
 }

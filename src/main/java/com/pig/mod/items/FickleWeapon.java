@@ -41,16 +41,7 @@ public class FickleWeapon extends Item implements Vanishable {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         //put tags in ItemStack
         //In "rand": 0 = nothing  1=sword  2=bow
-        pPlayer.getItemInHand(InteractionHand.MAIN_HAND).setTag(NBT);
-        NBT.putInt("testmod.fickleweapon_rand",0);
-        NBT.putInt("testmod.fickleweapon.energyUsed",0);
-        if (pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag()
-                .getInt("testmod.fickleweapon.changingProgress") == Integer.parseInt(null)){
-            NBT.putInt("testmod.fickleweapon.changingProgress",0);
-        }else {
-            NBT.putInt("testmod.fickleweapon.changingProgress",
-                    pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().getInt("testmod.fickleweapon.changingProgress"));
-        }
+
 
         //Dash when the item is a sword
         Dash(pPlayer);
@@ -75,37 +66,46 @@ public class FickleWeapon extends Item implements Vanishable {
 
     @Override
     public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
-        //Changing in progress
-        if (pStack.getTag().getInt("testmod.fickleweapon.changingProgress") < 10
-                && pStack.getTag().getInt("testmod.fickleweapon_rand") != 0) {
-            pStack.getTag().putInt("testmod.fickleweapon.changingProgress",
-                    pStack.getTag().getInt("testmod.fickleweapon.changingProgress") + 1);
-        } else if (pStack.getTag().getInt("testmod.fickleweapon_rand") != 0){
-            pStack.getTag().putInt("testmod.fickleweapon.changingProgress",10);
-        }
-        //Charging up
-        if (pStack.getTag().getInt("testmod.fickleweapon_rand") == 0 &&
-                pStack.getTag().getInt("testmod.fickleweapon.energyUsed") > 0) {
-            pStack.getTag().putInt("testmod.fickleweapon.energyUsed",
-                    pStack.getTag().getInt("testmod.fickleweapon.energyUsed") -1);
-        }
-        //Using energy
-        if (pStack.getTag().getInt("testmod.fickleweapon_rand") != 0){
-            int TimeLeft = MaxEnergy -
-                    pStack.getTag().getInt("testmod.fickleweapon.energyUsed");
-            pStack.getTag().putInt("testmod.fickleweapon.energyUsed",
-                    pStack.getTag().getInt("testmod.fickleweapon.energyUsed")+1);
-            //After Using the Energy
-            if (TimeLeft == 1){
-                pStack.getTag().putInt("testmod.fickleweapon_rand",0);
+        if (pStack.hasTag()){
+            if (pStack.getTag().getInt("testmod.fickleweapon_rand") == 0){
                 pStack.getTag().putInt("testmod.fickleweapon.changingProgress",0);
             }
-        }
-        //messing with "Damage" NBT data
-        if (pStack.getTag().getInt("testmod.fickleweapon_rand") == 1){
-            pStack.getTag().putInt("testmod.fickleweapon.damage",10);
+            //Changing in progress
+            if (pStack.getTag().getInt("testmod.fickleweapon.changingProgress") < 10
+                    && pStack.getTag().getInt("testmod.fickleweapon_rand") != 0) {
+                pStack.getTag().putInt("testmod.fickleweapon.changingProgress",
+                        pStack.getTag().getInt("testmod.fickleweapon.changingProgress") + 1);
+            } else if (pStack.getTag().getInt("testmod.fickleweapon_rand") != 0){
+                pStack.getTag().putInt("testmod.fickleweapon.changingProgress",10);
+            }
+            //Charging up
+            if (pStack.getTag().getInt("testmod.fickleweapon_rand") == 0 &&
+                    pStack.getTag().getInt("testmod.fickleweapon.energyUsed") > 0) {
+                pStack.getTag().putInt("testmod.fickleweapon.energyUsed",
+                        pStack.getTag().getInt("testmod.fickleweapon.energyUsed") -1);
+            }
+            //Using energy
+            if (pStack.getTag().getInt("testmod.fickleweapon_rand") != 0){
+                int TimeLeft = MaxEnergy -
+                        pStack.getTag().getInt("testmod.fickleweapon.energyUsed");
+                pStack.getTag().putInt("testmod.fickleweapon.energyUsed",
+                        pStack.getTag().getInt("testmod.fickleweapon.energyUsed")+1);
+                //After Using the Energy
+                if (TimeLeft == 1){
+                    pStack.getTag().putInt("testmod.fickleweapon_rand",0);
+                    pStack.getTag().putInt("testmod.fickleweapon.changingProgress",0);
+                }
+            }
+            //messing with "Damage" NBT data
+            if (pStack.getTag().getInt("testmod.fickleweapon_rand") == 1){
+                pStack.getTag().putInt("testmod.fickleweapon.damage",10);
+            }else {
+                pStack.getTag().putInt("testmod.fickleweapon.damage",0);
+            }
         }else {
-            pStack.getTag().putInt("testmod.fickleweapon.damage",0);
+            NBT.putInt("testmod.fickleweapon_rand",0);
+            NBT.putInt("testmod.fickleweapon.energyUsed",0);
+            pStack.setTag(NBT);
         }
         super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
     }
@@ -117,12 +117,20 @@ public class FickleWeapon extends Item implements Vanishable {
 
     @Override
     public boolean isBarVisible(ItemStack pStack) {
-        return pStack.getTag().getInt("testmod.fickleweapon.energyUsed") != 0;
+        if (pStack.hasTag()){
+            return pStack.getTag().getInt("testmod.fickleweapon.energyUsed") != 0;
+        }else {
+            return false;
+        }
     }
 
     @Override
     public int getBarWidth(ItemStack pStack) {
-        return Math.round(13.0F - (float)pStack.getTag().getInt("testmod.fickleweapon.energyUsed") * 13.0F / (float)MaxEnergy);
+        if (pStack.hasTag()){
+            return Math.round(13.0F - (float)pStack.getTag().getInt("testmod.fickleweapon.energyUsed") * 13.0F / (float)MaxEnergy);
+        }else {
+            return 0;
+        }
     }
 
     @Override
