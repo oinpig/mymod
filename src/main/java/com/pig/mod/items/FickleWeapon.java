@@ -47,7 +47,8 @@ public class FickleWeapon extends Item implements Vanishable {
         Dash(pPlayer);
         //Pull the bow when the item is a bow
         if (pPlayer.getItemInHand(InteractionHand.MAIN_HAND).hasTag()){
-            if (pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().getInt("testmod.fickleweapon_rand") == 2){
+            if (pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().getInt("testmod.fickleweapon_rand") == 2 &&
+                    pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().getInt("testmod.fickleweapon.changingProgress") == 10){
                 ItemStack itemstack = pPlayer.getItemInHand(InteractionHand.MAIN_HAND);
                 boolean flag = !pPlayer.getProjectile(itemstack).isEmpty();
 
@@ -69,7 +70,7 @@ public class FickleWeapon extends Item implements Vanishable {
                 int randMin = 1;
                 int i = (int) Math.floor(Math.random() * (randMax - randMin + 1) + randMin);
                 if (i <= 45) {
-                    pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().putInt("testmod.fickleweapon_rand",1);
+                    pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().putInt("testmod.fickleweapon_rand",2);
                 } else if (i > 45 && i <= 90) {
                     pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().putInt("testmod.fickleweapon_rand",2);
                 }

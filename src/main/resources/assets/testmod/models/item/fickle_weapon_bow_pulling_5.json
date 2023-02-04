@@ -1,0 +1,6 @@
+{
+    "parent": "testmod:item/fickle_weapon_bow_5",
+    "textures": {
+        "layer0": "testmod:item/fickle_weapon_bow_pulling_5"
+    }
+}
