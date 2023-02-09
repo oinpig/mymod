@@ -1,0 +1,38 @@
+{
+  "dowsing_rod_found_ore": {
+    "subtitle": "sounds.testmod.dowsing_rod_found_ore",
+    "sounds": [
+      "testmod:dowsing_rod_found_ore"
+    ]
+  },
+  "citrine_lamp_break": {
+    "subtitle": "testmod.citrine_lamp_break",
+    "sounds": [
+      "testmod:citrine_lamp_break"
+    ]
+  },
+  "citrine_lamp_step": {
+    "subtitle": "testmod.citrine_lamp_step",
+    "sounds": [
+      "testmod:citrine_lamp_step"
+    ]
+  },
+  "citrine_lamp_place": {
+    "subtitle": "testmod.citrine_lamp_place",
+    "sounds": [
+      "testmod:citrine_lamp_place"
+    ]
+  },
+  "citrine_lamp_hit": {
+    "subtitle": "testmod.citrine_lamp_hit",
+    "sounds": [
+      "testmod:citrine_lamp_hit"
+    ]
+  },
+  "citrine_lamp_fall": {
+    "subtitle": "testmod.citrine_lamp_fall",
+    "sounds": [
+      "testmod:citrine_lamp_fall"
+    ]
+  }
+}
