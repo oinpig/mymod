@@ -78,7 +78,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block> CITRINE_LAMP = registerBlock("citrine_lamp",
             () -> new CitrineLamp(BlockBehaviour.Properties.of(Material.AMETHYST).strength(5f)
                     .requiresCorrectToolForDrops().lightLevel((state) ->
-                            state.getValue(CitrineLamp.OPEN) ? 15 : 0)), MyMod.MOD_TAB);
+                            state.getValue(CitrineLamp.OPEN) ? 15 : 0).sound(SoundRegistry.CITRINE_LAMP_SOUNDS)), MyMod.MOD_TAB);
 
 
     public static void register(IEventBus eventBus) {

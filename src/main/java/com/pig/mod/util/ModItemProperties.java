@@ -1,14 +1,11 @@
 package com.pig.mod.util;
 
-import com.google.common.collect.Maps;
 import com.pig.mod.registries.ItemRegistry;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 
-import java.util.Map;
 
 public class ModItemProperties {
     public static void register(IEventBus eventBus){
@@ -50,31 +47,38 @@ public class ModItemProperties {
             }
         });
         ItemProperties.register(item,new ResourceLocation("fickle_pull"),(pStack, pLevel, pEntity, pSeed) -> {
-            float f = 0f;
-            if (pStack.hasTag()){
+            if (pStack.getTag() != null){
                 if (pStack.getTag().getInt("testmod.fickleweapon_rand") == 2){
-                    if (pEntity == null) {
-                        f= 0.0F;
-                    } else {
-                        f= pEntity.getUseItem() != pStack ? 0.0F : (float) (pStack.getUseDuration() -
-                                pEntity.getUseItemRemainingTicks()) / 10.0F;
+                    if(pStack.getTag().getInt("testmod.fickleweapon.changingProgress") == 10){
+                        if (pEntity == null) {
+                            return 0f;
+                        } else {
+                            return pEntity.getUseItem() != pStack ? 0.0F : (float) (pStack.getUseDuration() -
+                                    pEntity.getUseItemRemainingTicks()) / 10.0F;
+                        }
+                    }else {
+                        return 0;
                     }
+                }else {
+                    return 0;
                 }
             }else {
-                f=0f;
+                return 0;
             }
-            return f;
         });
         ItemProperties.register(item,new ResourceLocation("fickle_pulling"),(pStack, pLevel, pEntity, pSeed) -> {
-            float f = 0f;
-            if (pStack.hasTag()){
+            if (pStack.getTag() != null){
                 if (pStack.getTag().getInt("testmod.fickleweapon_rand") == 2){
-                    f= pEntity != null && pEntity.isUsingItem() && pEntity.getUseItem() == pStack ? 1.0F : 0.0F;
-                }
+                    if(pStack.getTag().getInt("testmod.fickleweapon.changingProgress") == 10){
+                        return pEntity != null && pEntity.isUsingItem() && pEntity.getUseItem() == pStack ? 1.0F : 0.0F;
+                    }else {
+                        return 0;
+                    }
+                }else
+                    return 0;
             }else {
-                f= 0f;
+                return  0f;
             }
-            return f;
         });
     }
 }

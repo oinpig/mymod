@@ -2,6 +2,7 @@ package com.pig.mod;
 
 import com.pig.mod.registries.BlockRegistry;
 import com.pig.mod.registries.ItemRegistry;
+import com.pig.mod.registries.SoundRegistry;
 import com.pig.mod.util.ModItemProperties;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -35,10 +36,10 @@ public class MyMod {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         BlockRegistry.register(bus);
         ItemRegistry.register(bus);
+        SoundRegistry.register(bus);
         MinecraftForge.EVENT_BUS.register(this);
         bus.addListener(this::clientSetup);
         bus.addListener(this::setup);
-
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {

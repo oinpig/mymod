@@ -72,41 +72,5 @@
   },
   "textures": {
     "layer0": "testmod:item/fickle_weapon_bow_5"
-  },
-  "overrides": [
-    {
-      "predicate": {
-        "fickle_pulling": 1
-      },
-      "model": "testmod:item/fickle_weapon_bow_pulling_1"
-    },
-    {
-      "predicate": {
-        "fickle_pulling": 1,
-        "fickle_pull": 0.25
-      },
-      "model": "testmod:item/fickle_weapon_bow_pulling_2"
-    },
-    {
-      "predicate": {
-        "fickle_pulling": 1,
-        "fickle_pull": 0.5
-      },
-      "model": "testmod:item/fickle_weapon_bow_pulling_3"
-    },
-    {
-      "predicate": {
-        "fickle_pulling": 1,
-        "fickle_pull": 0.75
-      },
-      "model": "testmod:item/fickle_weapon_bow_pulling_4"
-    },
-    {
-      "predicate": {
-        "fickle_pulling": 1,
-        "fickle_pull": 1
-      },
-      "model": "testmod:item/fickle_weapon_bow_pulling_5"
-    }
-  ]
+  }
 }
