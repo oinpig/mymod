@@ -37,6 +37,11 @@
   "block.testmod.pink_rose": "Pink Rose",
   "block.testmod.potted_pink_rose": "Potted Pink Rose",
   "block.testmod.citrine_lamp": "Citrine Lamp",
+  "block.tutorialmod.ebony_log": "Ebony Log",
+  "block.tutorialmod.ebony_planks": "Ebony Planks",
+  "block.tutorialmod.ebony_wood": "Ebony Wood",
+  "block.tutorialmod.stripped_ebony_log": "Stripped Ebony Log",
+  "block.tutorialmod.stripped_ebony_wood": "Stripped Ebony Wood",
 
   "item.testmod.diamond_dowsing_rod.no_valuables": "didn't found diamond on the place clicked",
   "item.testmod.diamond_dowsing_rod.found_sth": "found diamond at",

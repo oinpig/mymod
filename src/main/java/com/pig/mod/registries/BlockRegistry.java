@@ -2,6 +2,8 @@ package com.pig.mod.registries;
 
 import com.pig.mod.MyMod;
 import com.pig.mod.blocks.CitrineLamp;
+import com.pig.mod.blocks.ModLogBlock;
+import com.pig.mod.blocks.ModPlankBlock;
 import com.pig.mod.blocks.SpeedBlock;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -78,7 +80,20 @@ public class BlockRegistry {
     public static final RegistryObject<Block> CITRINE_LAMP = registerBlock("citrine_lamp",
             () -> new CitrineLamp(BlockBehaviour.Properties.of(Material.AMETHYST).strength(5f)
                     .requiresCorrectToolForDrops().lightLevel((state) ->
-                            state.getValue(CitrineLamp.OPEN) ? 15 : 0).sound(SoundRegistry.CITRINE_LAMP_SOUNDS)), MyMod.MOD_TAB);
+                            state.getValue(CitrineLamp.OPEN) ? 15 : 0)
+                    .sound(SoundRegistry.CITRINE_LAMP_SOUNDS)), MyMod.MOD_TAB);
+
+    public static final RegistryObject<Block> EBONY_LOG = registerBlock("ebony_log",()->
+            new ModLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),MyMod.MOD_TAB);
+    public static final RegistryObject<Block> EBONY_WOOD = registerBlock("ebony_wood",()->
+            new ModLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)),MyMod.MOD_TAB);
+    public static final RegistryObject<Block> STRIPPED_EBONY_LOG = registerBlock("stripped_ebony_log",()->
+            new ModLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)),MyMod.MOD_TAB);
+    public static final RegistryObject<Block> STRIPPED_EBONY_WOOD = registerBlock("stripped_ebony_wood",()->
+            new ModPlankBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)),MyMod.MOD_TAB);
+
+    public static final RegistryObject<Block> EBONY_PLANKS = registerBlock("ebony_planks",()->
+            new ModLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)),MyMod.MOD_TAB);
 
 
     public static void register(IEventBus eventBus) {

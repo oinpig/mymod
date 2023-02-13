@@ -10,7 +10,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -41,12 +40,13 @@ public class FickleWeapon extends Item implements Vanishable {
 
     private final int MaxEnergy = 200;
     CompoundTag NBT = new CompoundTag();
+    String Dashing = "testmod.fickleweapon.dashing";
 
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         //Dash when the item is a sword
-        Dash(pPlayer);
+        Dash(pPlayer,pPlayer.getItemInHand(InteractionHand.MAIN_HAND));
         //Pull the bow when the item is a bow
         InteractionResultHolder<ItemStack> ret = PullBow(pLevel, pPlayer);
         if (ret != null) return ret;
@@ -57,7 +57,7 @@ public class FickleWeapon extends Item implements Vanishable {
             int randMin = 1;
             int i = (int) Math.floor(Math.random() * (randMax - randMin + 1) + randMin);
             if (i <= 45) {
-                pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().putInt("testmod.fickleweapon_rand", 2);
+                pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().putInt("testmod.fickleweapon_rand", 1);
             } else if (i > 45 && i <= 90) {
                 pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().putInt("testmod.fickleweapon_rand", 2);
             }
@@ -107,10 +107,24 @@ public class FickleWeapon extends Item implements Vanishable {
             } else {
                 pStack.getTag().putInt("testmod.fickleweapon.damage", 0);
             }
+
+            //on dashing
+            if (pStack.getTag().getInt(Dashing) > 0){
+                pStack.getTag().putInt(Dashing,pStack.getTag().getInt(Dashing)-1);
+                pEntity.setInvulnerable(true);
+            }
+            if (pStack.getTag().getInt(Dashing) == 0){
+                if (pEntity instanceof Player player){
+                    if (!player.isCreative()){
+                        player.setInvulnerable(false);
+                    }
+                }
+            }
         } else {
             NBT.putInt("testmod.fickleweapon_rand", 0);
             NBT.putInt("testmod.fickleweapon.energyUsed", 0);
             NBT.putInt("testmod.fickleweapon.changingProgress", 0);
+            NBT.putInt(Dashing,0);
             pStack.setTag(NBT);
         }
         super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
@@ -217,10 +231,10 @@ public class FickleWeapon extends Item implements Vanishable {
     }
 
     public static float getPowerForTime(int pCharge) {
-        float f = (float) pCharge / 10.0F;
+        float f = (float) pCharge / 4.5F;
         f = (f * f + f * 2.0F) / 3.0F;
-        if (f > 1.0F) {
-            f = 1.0F;
+        if (f > 1.5F) {
+            f = 1.5F;
         }
         return f;
     }
@@ -259,12 +273,15 @@ public class FickleWeapon extends Item implements Vanishable {
 
 
     //the dash method
-    private void Dash(Player player) {
+    private void Dash(Player player,ItemStack stack) {
         if (player.getItemInHand(InteractionHand.MAIN_HAND).getTag().getInt("testmod.fickleweapon_rand") == 1
                 && player.getItemInHand(InteractionHand.MAIN_HAND).getTag().getInt("testmod.fickleweapon.changingProgress") >= 10) {
             Vec3 playerLookingAt = player.getLookAngle();
             player.setDeltaMovement(playerLookingAt.x * 3, 0, playerLookingAt.z * 3);
             player.getCooldowns().addCooldown(this, 20);
+            if (stack.hasTag()){
+                stack.getTag().putInt(Dashing,10);
+            }
         }
     }
 

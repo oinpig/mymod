@@ -15,11 +15,11 @@ import net.minecraft.world.level.Level;
 
 import java.util.function.Predicate;
 
-public class kaupenbow extends ProjectileWeaponItem implements Vanishable {
+public class Kaupenbow extends ProjectileWeaponItem implements Vanishable {
     public static final int MAX_DRAW_DURATION = 20;
     public static final int DEFAULT_RANGE = 15;
 
-    public kaupenbow(Properties p_43009_) {
+    public Kaupenbow(Properties p_43009_) {
         super(p_43009_);
     }
 

@@ -68,7 +68,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> MAGIC_DUST = ITEMS.register("magic_dust",
             () -> new Item(new Item.Properties().tab(MyMod.MOD_TAB)));
     public static final RegistryObject<Item> KAUPENBOW = ITEMS.register("kaupenbow",
-            () -> new kaupenbow(new Item.Properties().tab(MyMod.MOD_TAB).durability(500)));
+            () -> new Kaupenbow(new Item.Properties().tab(MyMod.MOD_TAB).durability(500)));
     public static final RegistryObject<Item> FICKLE_WEAPON = ITEMS.register("fickle_weapon",
             () -> new FickleWeapon(new Item.Properties().tab(MyMod.MOD_TAB).stacksTo(1).fireResistant()));
 
