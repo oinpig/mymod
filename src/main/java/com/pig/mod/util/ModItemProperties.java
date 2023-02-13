@@ -8,9 +8,10 @@ import net.minecraftforge.eventbus.api.IEventBus;
 
 
 public class ModItemProperties {
-    public static void register(IEventBus eventBus){
+    public static void register(IEventBus eventBus) {
 
     }
+
     public static void addCustomItemProperties() {
         makeBow(ItemRegistry.KAUPENBOW.get());
         makeFickleItem(ItemRegistry.FICKLE_WEAPON.get());
@@ -31,53 +32,53 @@ public class ModItemProperties {
         });
     }
 
-    private static void makeFickleItem(Item item){
-        ItemProperties.register(item,new ResourceLocation("changing"),(pStack, pLevel, pEntity, pSeed) -> {
-            if (pStack.getTag() != null){
+    private static void makeFickleItem(Item item) {
+        ItemProperties.register(item, new ResourceLocation("changing"), (pStack, pLevel, pEntity, pSeed) -> {
+            if (pStack.getTag() != null) {
                 return (float) pStack.getTag().getInt("testmod.fickleweapon.changingProgress") / 10f;
-            }else {
+            } else {
                 return 0f;
             }
         });
-        ItemProperties.register(item,new ResourceLocation("rand"),(pStack, pLevel, pEntity, pSeed) -> {
-            if (pStack.getTag() != null){
+        ItemProperties.register(item, new ResourceLocation("rand"), (pStack, pLevel, pEntity, pSeed) -> {
+            if (pStack.getTag() != null) {
                 return (float) pStack.getTag().getInt("testmod.fickleweapon_rand");
-            }else {
+            } else {
                 return 0f;
             }
         });
-        ItemProperties.register(item,new ResourceLocation("fickle_pull"),(pStack, pLevel, pEntity, pSeed) -> {
-            if (pStack.getTag() != null){
-                if (pStack.getTag().getInt("testmod.fickleweapon_rand") == 2){
-                    if(pStack.getTag().getInt("testmod.fickleweapon.changingProgress") == 10){
+        ItemProperties.register(item, new ResourceLocation("fickle_pull"), (pStack, pLevel, pEntity, pSeed) -> {
+            if (pStack.getTag() != null) {
+                if (pStack.getTag().getInt("testmod.fickleweapon_rand") == 2) {
+                    if (pStack.getTag().getInt("testmod.fickleweapon.changingProgress") == 10) {
                         if (pEntity == null) {
                             return 0f;
                         } else {
                             return pEntity.getUseItem() != pStack ? 0.0F : (float) (pStack.getUseDuration() -
                                     pEntity.getUseItemRemainingTicks()) / 10.0F;
                         }
-                    }else {
+                    } else {
                         return 0;
                     }
-                }else {
+                } else {
                     return 0;
                 }
-            }else {
+            } else {
                 return 0;
             }
         });
-        ItemProperties.register(item,new ResourceLocation("fickle_pulling"),(pStack, pLevel, pEntity, pSeed) -> {
-            if (pStack.getTag() != null){
-                if (pStack.getTag().getInt("testmod.fickleweapon_rand") == 2){
-                    if(pStack.getTag().getInt("testmod.fickleweapon.changingProgress") == 10){
+        ItemProperties.register(item, new ResourceLocation("fickle_pulling"), (pStack, pLevel, pEntity, pSeed) -> {
+            if (pStack.getTag() != null) {
+                if (pStack.getTag().getInt("testmod.fickleweapon_rand") == 2) {
+                    if (pStack.getTag().getInt("testmod.fickleweapon.changingProgress") == 10) {
                         return pEntity != null && pEntity.isUsingItem() && pEntity.getUseItem() == pStack ? 1.0F : 0.0F;
-                    }else {
+                    } else {
                         return 0;
                     }
-                }else
+                } else
                     return 0;
-            }else {
-                return  0f;
+            } else {
+                return 0f;
             }
         });
     }

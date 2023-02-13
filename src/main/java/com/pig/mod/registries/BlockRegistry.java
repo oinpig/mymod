@@ -83,17 +83,17 @@ public class BlockRegistry {
                             state.getValue(CitrineLamp.OPEN) ? 15 : 0)
                     .sound(SoundRegistry.CITRINE_LAMP_SOUNDS)), MyMod.MOD_TAB);
 
-    public static final RegistryObject<Block> EBONY_LOG = registerBlock("ebony_log",()->
-            new ModLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),MyMod.MOD_TAB);
-    public static final RegistryObject<Block> EBONY_WOOD = registerBlock("ebony_wood",()->
-            new ModLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)),MyMod.MOD_TAB);
-    public static final RegistryObject<Block> STRIPPED_EBONY_LOG = registerBlock("stripped_ebony_log",()->
-            new ModLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)),MyMod.MOD_TAB);
-    public static final RegistryObject<Block> STRIPPED_EBONY_WOOD = registerBlock("stripped_ebony_wood",()->
-            new ModPlankBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)),MyMod.MOD_TAB);
+    public static final RegistryObject<Block> EBONY_LOG = registerBlock("ebony_log", () ->
+            new ModLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)), MyMod.MOD_TAB);
+    public static final RegistryObject<Block> EBONY_WOOD = registerBlock("ebony_wood", () ->
+            new ModLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)), MyMod.MOD_TAB);
+    public static final RegistryObject<Block> STRIPPED_EBONY_LOG = registerBlock("stripped_ebony_log", () ->
+            new ModLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)), MyMod.MOD_TAB);
+    public static final RegistryObject<Block> STRIPPED_EBONY_WOOD = registerBlock("stripped_ebony_wood", () ->
+            new ModPlankBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)), MyMod.MOD_TAB);
 
-    public static final RegistryObject<Block> EBONY_PLANKS = registerBlock("ebony_planks",()->
-            new ModLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)),MyMod.MOD_TAB);
+    public static final RegistryObject<Block> EBONY_PLANKS = registerBlock("ebony_planks", () ->
+            new ModLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)), MyMod.MOD_TAB);
 
 
     public static void register(IEventBus eventBus) {

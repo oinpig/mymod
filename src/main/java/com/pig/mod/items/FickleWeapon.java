@@ -46,7 +46,7 @@ public class FickleWeapon extends Item implements Vanishable {
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         //Dash when the item is a sword
-        Dash(pPlayer,pPlayer.getItemInHand(InteractionHand.MAIN_HAND));
+        Dash(pPlayer, pPlayer.getItemInHand(InteractionHand.MAIN_HAND));
         //Pull the bow when the item is a bow
         InteractionResultHolder<ItemStack> ret = PullBow(pLevel, pPlayer);
         if (ret != null) return ret;
@@ -66,7 +66,6 @@ public class FickleWeapon extends Item implements Vanishable {
 
         return super.use(pLevel, pPlayer, pUsedHand);
     }
-
 
 
     @Override
@@ -109,13 +108,13 @@ public class FickleWeapon extends Item implements Vanishable {
             }
 
             //on dashing
-            if (pStack.getTag().getInt(Dashing) > 0){
-                pStack.getTag().putInt(Dashing,pStack.getTag().getInt(Dashing)-1);
+            if (pStack.getTag().getInt(Dashing) > 0) {
+                pStack.getTag().putInt(Dashing, pStack.getTag().getInt(Dashing) - 1);
                 pEntity.setInvulnerable(true);
             }
-            if (pStack.getTag().getInt(Dashing) == 0){
-                if (pEntity instanceof Player player){
-                    if (!player.isCreative()){
+            if (pStack.getTag().getInt(Dashing) == 0) {
+                if (pEntity instanceof Player player) {
+                    if (!player.isCreative()) {
                         player.setInvulnerable(false);
                     }
                 }
@@ -124,7 +123,7 @@ public class FickleWeapon extends Item implements Vanishable {
             NBT.putInt("testmod.fickleweapon_rand", 0);
             NBT.putInt("testmod.fickleweapon.energyUsed", 0);
             NBT.putInt("testmod.fickleweapon.changingProgress", 0);
-            NBT.putInt(Dashing,0);
+            NBT.putInt(Dashing, 0);
             pStack.setTag(NBT);
         }
         super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
@@ -164,8 +163,8 @@ public class FickleWeapon extends Item implements Vanishable {
         if (pStack.hasTag()) {
             if (pStack.getTag().getInt("testmod.fickleweapon_rand") == 2) {
                 if (pEntityLiving instanceof Player player) {
-                    pEntityLiving.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,20,1));
-                    pEntityLiving.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,20,1));
+                    pEntityLiving.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 1));
+                    pEntityLiving.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20, 1));
                     boolean flag = true;
                     ItemStack itemstack = player.getProjectile(pStack);
 
@@ -273,14 +272,14 @@ public class FickleWeapon extends Item implements Vanishable {
 
 
     //the dash method
-    private void Dash(Player player,ItemStack stack) {
+    private void Dash(Player player, ItemStack stack) {
         if (player.getItemInHand(InteractionHand.MAIN_HAND).getTag().getInt("testmod.fickleweapon_rand") == 1
                 && player.getItemInHand(InteractionHand.MAIN_HAND).getTag().getInt("testmod.fickleweapon.changingProgress") >= 10) {
             Vec3 playerLookingAt = player.getLookAngle();
             player.setDeltaMovement(playerLookingAt.x * 3, 0, playerLookingAt.z * 3);
             player.getCooldowns().addCooldown(this, 20);
-            if (stack.hasTag()){
-                stack.getTag().putInt(Dashing,10);
+            if (stack.hasTag()) {
+                stack.getTag().putInt(Dashing, 10);
             }
         }
     }
