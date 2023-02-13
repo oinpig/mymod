@@ -40,6 +40,7 @@ public class MyMod {
         MinecraftForge.EVENT_BUS.register(this);
         bus.addListener(this::clientSetup);
         bus.addListener(this::setup);
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
