@@ -5,6 +5,6 @@
       "loot_table_id": "minecraft:entities/creeper"
     }
   ],
-  "addition": "tutorialmod:super_coal",
-  "type": "tutorialmod:coal_coke_from_creeper"
+  "addition": "testmod:super_coal",
+  "type": "testmod:coal_coke_from_creeper"
 }

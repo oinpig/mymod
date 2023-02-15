@@ -1,15 +1,15 @@
 {
   "variants": {
     "axis=x": {
-      "model": "tutorialmod:block/ebony_wood",
+      "model": "testmod:block/ebony_wood",
       "x": 90,
       "y": 90
     },
     "axis=y": {
-      "model": "tutorialmod:block/ebony_wood"
+      "model": "testmod:block/ebony_wood"
     },
     "axis=z": {
-      "model": "tutorialmod:block/ebony_wood",
+      "model": "testmod:block/ebony_wood",
       "x": 90
     }
   }

@@ -1,5 +1,5 @@
 {
   "variants": {
-    "": { "model": "tutorialmod:block/ebony_planks" }
+    "": { "model": "testmod:block/ebony_planks" }
   }
 }

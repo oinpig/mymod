@@ -11,6 +11,9 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class DiamondDowsingRod extends Item {
     public DiamondDowsingRod(Properties pProperties) {
@@ -18,7 +21,7 @@ public class DiamondDowsingRod extends Item {
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext pContext) {
+    public @NotNull InteractionResult useOn(UseOnContext pContext) {
         if (pContext.getLevel().isClientSide()) {
             BlockPos positionClicked = pContext.getClickedPos();
             Player player = pContext.getPlayer();
@@ -28,6 +31,7 @@ public class DiamondDowsingRod extends Item {
                 Block blockBelow = pContext.getLevel().getBlockState(positionClicked.below(i)).getBlock();
 
                 if (isValuableBlock(blockBelow)) {
+                    assert player != null;
                     outputfound(player);
                     Coordinates(positionClicked.below(i), player);
                     foundBlock = true;
@@ -36,12 +40,13 @@ public class DiamondDowsingRod extends Item {
             }
 
             if (!foundBlock) {
+                assert player != null;
                 player.sendMessage(new TranslatableComponent("item.testmod.diamond_dowsing_rod.no_valuables"),
                         player.getUUID());
             }
         }
 
-        pContext.getItemInHand().hurtAndBreak(1, pContext.getPlayer(),
+        pContext.getItemInHand().hurtAndBreak(1, Objects.requireNonNull(pContext.getPlayer()),
                 (player) -> player.broadcastBreakEvent(player.getUsedItemHand()));
         return super.useOn(pContext);
     }
@@ -61,7 +66,7 @@ public class DiamondDowsingRod extends Item {
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack pStack) {
+    public UseAnim getUseAnimation(@NotNull ItemStack pStack) {
         return UseAnim.BLOCK;
     }
 }

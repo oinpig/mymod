@@ -24,17 +24,18 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class FickleWeapon extends Item implements Vanishable {
+import java.util.Objects;
 
-    private final Multimap<Attribute, AttributeModifier> defaultModifiers;
+public class FickleWeapon extends Item implements Vanishable {
 
     public FickleWeapon(Properties pProperties) {
         super(pProperties);
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", -2.0f, AttributeModifier.Operation.ADDITION));
-        this.defaultModifiers = builder.build();
+        Multimap<Attribute, AttributeModifier> defaultModifiers = builder.build();
     }
 
 
@@ -44,24 +45,24 @@ public class FickleWeapon extends Item implements Vanishable {
 
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, @NotNull Player pPlayer, @NotNull InteractionHand pUsedHand) {
         //Dash when the item is a sword
         Dash(pPlayer, pPlayer.getItemInHand(InteractionHand.MAIN_HAND));
         //Pull the bow when the item is a bow
         InteractionResultHolder<ItemStack> ret = PullBow(pLevel, pPlayer);
         if (ret != null) return ret;
         //random roll
-        if (pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().getInt("testmod.fickleweapon_rand") == 0
-                && pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().getInt("testmod.fickleweapon.energyUsed") == 0) {
+        if (Objects.requireNonNull(pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag()).getInt("testmod.fickleweapon_rand") == 0
+                && Objects.requireNonNull(pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag()).getInt("testmod.fickleweapon.energyUsed") == 0) {
             int randMax = 90;
             int randMin = 1;
             int i = (int) Math.floor(Math.random() * (randMax - randMin + 1) + randMin);
             if (i <= 45) {
-                pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().putInt("testmod.fickleweapon_rand", 1);
+                Objects.requireNonNull(pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag()).putInt("testmod.fickleweapon_rand", 1);
             } else if (i > 45 && i <= 90) {
-                pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().putInt("testmod.fickleweapon_rand", 2);
+                Objects.requireNonNull(pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag()).putInt("testmod.fickleweapon_rand", 2);
             }
-            System.out.println(pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag().getInt("testmod.fickleweapon_rand"));
+            System.out.println(Objects.requireNonNull(pPlayer.getItemInHand(InteractionHand.MAIN_HAND).getTag()).getInt("testmod.fickleweapon_rand"));
         }
 
         return super.use(pLevel, pPlayer, pUsedHand);
@@ -69,9 +70,9 @@ public class FickleWeapon extends Item implements Vanishable {
 
 
     @Override
-    public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
+    public void inventoryTick(ItemStack pStack, @NotNull Level pLevel, @NotNull Entity pEntity, int pSlotId, boolean pIsSelected) {
         if (pStack.hasTag()) {
-            if (pStack.getTag().getInt("testmod.fickleweapon_rand") == 0) {
+            if (Objects.requireNonNull(pStack.getTag()).getInt("testmod.fickleweapon_rand") == 0) {
                 pStack.getTag().putInt("testmod.fickleweapon.changingProgress", 0);
             }
             //Changing in progress
@@ -130,14 +131,14 @@ public class FickleWeapon extends Item implements Vanishable {
     }
 
     @Override
-    public int getBarColor(ItemStack pStack) {
+    public int getBarColor(@NotNull ItemStack pStack) {
         return Mth.hsvToRgb(0.5F, 1.0F, 1.0F);
     }
 
     @Override
     public boolean isBarVisible(ItemStack pStack) {
         if (pStack.hasTag()) {
-            return pStack.getTag().getInt("testmod.fickleweapon.energyUsed") != 0;
+            return Objects.requireNonNull(pStack.getTag()).getInt("testmod.fickleweapon.energyUsed") != 0;
         } else {
             return false;
         }
