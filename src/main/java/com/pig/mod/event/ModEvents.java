@@ -1,6 +1,5 @@
 package com.pig.mod.event;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.pig.mod.MyMod;
 import com.pig.mod.registries.ItemRegistry;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -30,4 +29,5 @@ public class ModEvents {
                     stack,1145,8,2F));
         }
     }
+
 }

@@ -1,10 +1,7 @@
 package com.pig.mod.registries;
 
 import com.pig.mod.MyMod;
-import com.pig.mod.blocks.CitrineLamp;
-import com.pig.mod.blocks.ModLogBlock;
-import com.pig.mod.blocks.ModPlankBlock;
-import com.pig.mod.blocks.SpeedBlock;
+import com.pig.mod.blocks.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffects;
@@ -82,6 +79,9 @@ public class BlockRegistry {
                     .requiresCorrectToolForDrops().lightLevel((state) ->
                             state.getValue(CitrineLamp.OPEN) ? 15 : 0)
                     .sound(SoundRegistry.CITRINE_LAMP_SOUNDS)), MyMod.MOD_TAB);
+    public static final RegistryObject<Block> GEM_CUTER = registerBlock("gem_cutter",
+            () -> new GemCuttingStation(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(9f)
+                    .requiresCorrectToolForDrops().noOcclusion()), MyMod.MOD_TAB);
 
     public static final RegistryObject<Block> EBONY_LOG = registerBlock("ebony_log", () ->
             new ModLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)), MyMod.MOD_TAB);

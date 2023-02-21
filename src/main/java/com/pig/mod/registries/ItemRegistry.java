@@ -72,6 +72,9 @@ public class ItemRegistry {
     public static final RegistryObject<Item> FICKLE_WEAPON = ITEMS.register("fickle_weapon",
             () -> new FickleWeapon(new Item.Properties().tab(MyMod.MOD_TAB).stacksTo(1).fireResistant()));
 
+    public static final RegistryObject<Item> CITRINE_STAFF = ITEMS.register("citrine_staff", () -> new Item(
+            new Item.Properties().tab(MyMod.MOD_TAB).stacksTo(1).fireResistant()));
+
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
