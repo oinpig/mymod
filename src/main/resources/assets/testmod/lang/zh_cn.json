@@ -45,5 +45,7 @@
   "item.citrine_armor_tooltip": "§6富含魔力的护甲，你或许可以试试穿上全套",
   "item.tooltip.supercoal.null": "§8沼气驱动的燃料，可以燃烧§g114514§8 ticks(约为95分钟)",
 
-  "block.tooltip.SpeedBlock": "踩上时提供速度效果"
+  "block.tooltip.SpeedBlock": "踩上时提供速度效果",
+
+  "gui.testmod.gem_cutter": "宝石切割台"
 }

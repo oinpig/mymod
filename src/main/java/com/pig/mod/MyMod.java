@@ -1,6 +1,7 @@
 package com.pig.mod;
 
 import com.pig.mod.effect.EffectRegistery;
+import com.pig.mod.registries.BlockEntitiesRegistery;
 import com.pig.mod.registries.BlockRegistry;
 import com.pig.mod.registries.ItemRegistry;
 import com.pig.mod.registries.SoundRegistry;
@@ -37,6 +38,7 @@ public class MyMod {
         ItemRegistry.register(bus);
         SoundRegistry.register(bus);
         EffectRegistery.register(bus);
+        BlockEntitiesRegistery.register(bus);
         MinecraftForge.EVENT_BUS.register(this);
         bus.addListener(this::clientSetup);
         bus.addListener(this::setup);

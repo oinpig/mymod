@@ -53,5 +53,7 @@
   "item.citrine_armor_tooltip": "§6The armor is full with magic,maybe you can try putting the whole suit on",
   "item.tooltip.supercoal.null": "§8Has a long durability to burn(for about 95 minutes)",
 
-  "block.tooltip.SpeedBlock": "Append speed effect when standing on it"
+  "block.tooltip.SpeedBlock": "Append speed effect when standing on it",
+
+  "gui.testmod.gem_cutter": "Gem Cutter"
 }
